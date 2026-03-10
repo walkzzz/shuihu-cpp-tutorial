@@ -13,66 +13,66 @@
 
 // 函数模板 - 万能比较
 template<typename T>
-T 最大值 (T a, T b) {
+T maxValue(T a, T b) {
     return (a > b) ? a : b;
 }
 
 // 类模板 - 万能兵器库
 template<typename T>
-class 兵器库 {
+class WeaponStore {
 private:
-    std::vector<T> 兵器列表;
+    std::vector<T> weapons;
 
 public:
-    void 添加 (const T& 兵器) {
-        兵器列表.push_back (兵器);
+    void add(const T& weapon) {
+        weapons.push_back(weapon);
     }
     
-    T 获取 (int 索引) const {
-        if (索引 >= 0 && 索引 < 兵器列表.size()) {
-            return 兵器列表 [索引];
+    T get(int index) const {
+        if (index >= 0 && index < weapons.size()) {
+            return weapons[index];
         }
         return T();
     }
     
-    int 数量 () const {
-        return 兵器列表.size();
+    int size() const {
+        return weapons.size();
     }
     
-    void 展示 () const {
-        std::cout << "兵器库内容 (" << 数量 () << "件):" << std::endl;
-        for (size_t i = 0; i < 兵器列表.size(); ++i) {
-            std::cout << "  [" << i << "] " << 兵器列表 [i] << std::endl;
+    void display() const {
+        std::cout << "兵器库内容 (" << size() << "件):" << std::endl;
+        for (size_t i = 0; i < weapons.size(); ++i) {
+            std::cout << "  [" << i << "] " << weapons[i] << std::endl;
         }
     }
 };
 
 // 模板特化 - 字符串兵器库
 template<>
-class 兵器库<std::string> {
+class WeaponStore<std::string> {
 private:
-    std::vector<std::string> 兵器列表;
+    std::vector<std::string> weapons;
 
 public:
-    void 添加 (const std::string& 兵器) {
-        兵器列表.push_back (兵器);
+    void add(const std::string& weapon) {
+        weapons.push_back(weapon);
     }
     
-    std::string 获取 (int 索引) const {
-        if (索引 >= 0 && 索引 < 兵器列表.size()) {
-            return 兵器列表 [索引];
+    std::string get(int index) const {
+        if (index >= 0 && index < weapons.size()) {
+            return weapons[index];
         }
         return "";
     }
     
-    int 数量 () const {
-        return 兵器列表.size();
+    int size() const {
+        return weapons.size();
     }
     
-    void 展示 () const {
-        std::cout << "兵器库内容 (" << 数量 () << "件):" << std::endl;
-        for (size_t i = 0; i < 兵器列表.size(); ++i) {
-            std::cout << "  [" << i << "] 🗡️ " << 兵器列表 [i] << std::endl;
+    void display() const {
+        std::cout << "兵器库内容 (" << size() << "件):" << std::endl;
+        for (size_t i = 0; i < weapons.size(); ++i) {
+            std::cout << "  [" << i << "] 🗡️ " << weapons[i] << std::endl;
         }
     }
 };
@@ -82,25 +82,25 @@ int main() {
     std::cout << "===============================" << std::endl;
     
     // 函数模板
-    std::cout << "最大值 (3, 7) = " << 最大值 (3, 7) << std::endl;
-    std::cout << "最大值 (5.5, 3.2) = " << 最大值 (5.5, 3.2) << std::endl;
+    std::cout << "最大值 (3, 7) = " << maxValue(3, 7) << std::endl;
+    std::cout << "最大值 (5.5, 3.2) = " << maxValue(5.5, 3.2) << std::endl;
     std::cout << std::endl;
     
     // 整数兵器库
-    兵器库<int> 整数库;
-    整数库。添加 (10);
-    整数库。添加 (20);
-    整数库。添加 (30);
-    整数库。展示 ();
+    WeaponStore<int> intStore;
+    intStore.add(10);
+    intStore.add(20);
+    intStore.add(30);
+    intStore.display();
     
     std::cout << std::endl;
     
     // 字符串兵器库（特化版本）
-    兵器库<std::string> 武器库;
-    武器库。添加 ("青龙刀");
-    武器库。添加 ("丈八蛇矛");
-    武器库。添加 ("双股剑");
-    武器库。展示 ();
+    WeaponStore<std::string> weaponStore;
+    weaponStore.add("青龙刀");
+    weaponStore.add("丈八蛇矛");
+    weaponStore.add("双股剑");
+    weaponStore.display();
     
     std::cout << "===============================" << std::endl;
     std::cout << "示例完成!" << std::endl;

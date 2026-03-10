@@ -11,8 +11,8 @@
 #include <string>
 
 // 点将函数 - 相当于聚义厅点将
-void 点将 (const std::string& 绰号，const std::string& 姓名，int 兵力) {
-    std::cout << 绰号 << " - " << 姓名 << " 带" << 兵力 << "兵马听令!" << std::endl;
+void assignTroops(const std::string& nickname，const std::string& name，int troops) {
+    std::cout << nickname << " - " << name << " 带" << troops << "兵马听令!" << std::endl;
 }
 
 int main() {
@@ -20,9 +20,9 @@ int main() {
     std::cout << "===============================" << std::endl;
     
     // 点将示例
-    点将 ("豹子头", "林冲", 5000);
-    点将 ("花和尚", "鲁智深", 3000);
-    点将 ("行者", "武松", 2000);
+    assignTroops ("豹子头", "林冲", 5000);
+    assignTroops ("花和尚", "鲁智深", 3000);
+    assignTroops ("行者", "武松", 2000);
     
     std::cout << "===============================" << std::endl;
     std::cout << "点将完毕!" << std::endl;

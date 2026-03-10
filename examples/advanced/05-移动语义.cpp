@@ -17,22 +17,22 @@ private:
     std::string name;
 
 public:
-    Granary (const std::string& n, int initialAmount)
-        : name (n) {
+    Granary(const std::string& n, int initialAmount)
+        : name(n) {
         grains.resize(initialAmount);
         std::cout << "【构造】" << name << " 创建 (" << initialAmount << "石)" << std::endl;
     }
     
     // 拷贝构造函数
-    Granary (const Granary& other)
-        : name (other.name + "_copy") {
+    Granary(const Granary& other)
+        : name(other.name + "_copy") {
         grains = other.grains;
         std::cout << "【拷贝】" << name << " 被复制" << std::endl;
     }
     
     // 移动构造函数
-    Granary (Granary&& other) noexcept
-        : name (std::move(other.name)) {
+    Granary(Granary&& other) noexcept
+        : name(std::move(other.name)) {
         grains = std::move(other.grains);
         std::cout << "【移动】" << name << " 被移动 (高效!)" << std::endl;
     }
@@ -57,13 +57,13 @@ public:
         return *this;
     }
     
-    ~Granary () {
+    ~Granary() {
         std::cout << "【析构】" << name << std::endl;
     }
 };
 
-Granary createGranary (const std::string& name, int amount) {
-    return Granary (name, amount);
+Granary createGranary(const std::string& name, int amount) {
+    return Granary(name, amount);
 }
 
 int main() {
@@ -71,14 +71,14 @@ int main() {
     std::cout << "===============================" << std::endl;
     
     std::cout << "\n=== 返回值优化 (RVO) ===" << std::endl;
-    auto granary1 = createGranary ("前线粮草库", 10000);
+    auto granary1 = createGranary("前线粮草库", 10000);
     
     std::cout << "\n=== 移动语义 ===" << std::endl;
     auto granary2 = std::move(granary1);
     
     std::cout << "\n=== vector 自动使用移动语义 ===" << std::endl;
     std::vector<Granary> allGranaries;
-    allGranaries.push_back(createGranary ("后方粮草库", 20000));
+    allGranaries.push_back(createGranary("后方粮草库", 20000));
     
     std::cout << "\n===============================" << std::endl;
     std::cout << "示例完成!" << std::endl;

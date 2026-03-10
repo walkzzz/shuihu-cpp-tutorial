@@ -14,20 +14,20 @@
 // 策略模式
 class Strategy {
 public:
-    virtual ~Strategy () = default;
-    virtual void execute () const = 0;
+    virtual ~Strategy() = default;
+    virtual void execute() const = 0;
 };
 
 class SoundEastAttackWest : public Strategy {
 public:
-    void execute () const override {
+    void execute() const override {
         std::cout << "【声东击西】佯攻东面，实取西面!" << std::endl;
     }
 };
 
 class SurroundWeiSaveZhao : public Strategy {
 public:
-    void execute () const override {
+    void execute() const override {
         std::cout << "【围魏救赵】攻其必救，解围之道!" << std::endl;
     }
 };
@@ -37,13 +37,13 @@ private:
     std::unique_ptr<Strategy> currentStrategy;
 
 public:
-    void setStrategy (std::unique_ptr<Strategy> strategy) {
+    void setStrategy(std::unique_ptr<Strategy> strategy) {
         currentStrategy = std::move(strategy);
     }
     
-    void offerStrategy () const {
+    void offerStrategy() const {
         if (currentStrategy) {
-            currentStrategy->execute ();
+            currentStrategy->execute();
         }
     }
 };

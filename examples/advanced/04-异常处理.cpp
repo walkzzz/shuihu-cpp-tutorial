@@ -11,41 +11,41 @@
 #include <string>
 
 // 自定义异常
-class 粮草不足异常 : public std::runtime_error {
+class InsufficientGrainException : public std::runtime_error {
 public:
-    粮草不足异常 (const std::string& msg)
+    InsufficientGrainException(const std::string& msg)
         : std::runtime_error(msg) {}
 };
 
-class 兵力不足异常 : public std::runtime_error {
+class InsufficientTroopsException : public std::runtime_error {
 public:
-    兵力不足异常 (const std::string& msg)
+    InsufficientTroopsException(const std::string& msg)
         : std::runtime_error(msg) {}
 };
 
-void 检查粮草 (int 粮草) {
-    if (粮草 < 1000) {
-        throw 粮草不足异常 ("粮草只有 " + std::to_string(粮草) + "石，不足 1000 石!");
+void checkGrain(int grain) {
+    if (grain < 1000) {
+        throw InsufficientGrainException("粮草只有 " + std::to_string(grain) + "石，不足 1000 石!");
     }
-    std::cout << "粮草充足：" << 粮草 << "石" << std::endl;
+    std::cout << "粮草充足：" << grain << "石" << std::endl;
 }
 
-void 检查兵力 (int 兵力) {
-    if (兵力 < 1000) {
-        throw 兵力不足异常 ("兵力只有 " + std::to_string(兵力) + "人，不足 1000 人!");
+void checkTroops(int troops) {
+    if (troops < 1000) {
+        throw InsufficientTroopsException("兵力只有 " + std::to_string(troops) + "人，不足 1000 人!");
     }
-    std::cout << "兵力充足：" << 兵力 << "人" << std::endl;
+    std::cout << "兵力充足：" << troops << "人" << std::endl;
 }
 
-void 准备出征 (int 粮草，int 兵力) {
+void prepareExpedition(int grain，int troops) {
     try {
-        检查粮草 (粮草);
-        检查兵力 (兵力);
+        checkGrain(grain);
+        checkTroops(troops);
         std::cout << "准备完毕，可以出征!" << std::endl;
-    } catch (const 粮草不足异常& e) {
+    } catch (const InsufficientGrainException& e) {
         std::cerr << "【军法】粮草问题：" << e.what() << std::endl;
         throw; // 重新抛出
-    } catch (const 兵力不足异常& e) {
+    } catch (const InsufficientTroopsException& e) {
         std::cerr << "【军法】兵力问题：" << e.what() << std::endl;
     }
 }
@@ -56,13 +56,13 @@ int main() {
     
     try {
         std::cout << "\n【出征 1】" << std::endl;
-        准备出征 (5000, 5000);
+        prepareExpedition(5000, 5000);
         
         std::cout << "\n【出征 2】" << std::endl;
-        准备出征 (500, 5000);
+        prepareExpedition(500, 5000);
         
         std::cout << "\n【出征 3】" << std::endl;
-        准备出征 (5000, 500);
+        prepareExpedition(5000, 500);
     } catch (const std::exception& e) {
         std::cerr << "【总军法】出征失败：" << e.what() << std::endl;
     }

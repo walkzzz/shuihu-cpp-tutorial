@@ -13,83 +13,83 @@
 #include <memory>
 
 // 基类：梁山人物
-class 梁山人物 {
+class LiangshanPerson {
 protected:
-    std::string 姓名;
-    int 能力值;
+    std::string name;
+    int ability;
 
 public:
-    梁山人物 (const std::string& n, int v) : 姓名 (n), 能力值 (v) {}
-    virtual ~梁山人物 () = default;
+    LiangshanPerson(const std::string& n, int v) : name(n), ability(v) {}
+    virtual ~LiangshanPerson() = default;
     
-    virtual void 介绍 () const {
-        std::cout << "姓名：" << 姓名 << ", 能力：" << 能力值 << std::endl;
+    virtual void introduce() const {
+        std::cout << "姓名：" << name << ", 能力：" << ability << std::endl;
     }
     
     // 纯虚函数 - 抽象方法
-    virtual void 技能 () const = 0;
+    virtual void skill() const = 0;
     
-    std::string 获取姓名 () const { return 姓名; }
+    std::string getName() const { return name; }
 };
 
 // 派生类：好汉
-class 好汉 : public 梁山人物 {
+class Hero : public LiangshanPerson {
 private:
-    std::string 绰号;
-    std::string 武器;
+    std::string nickname;
+    std::string weapon;
 
 public:
-    好汉 (const std::string& n, const std::string& c, int v, const std::string& w)
-        : 梁山人物 (n, v), 绰号 (c), 武器 (w) {}
+    Hero(const std::string& n, const std::string& c, int v, const std::string& w)
+        : LiangshanPerson(n, v), nickname(c), weapon(w) {}
     
-    void 介绍 () const override {
-        std::cout << "【好汉】" << 绰号 << " - " << 姓名 
-                  << ", 武器：" << 武器 
-                  << ", 武力：" << 能力值 << std::endl;
+    void introduce() const override {
+        std::cout << "【好汉】" << nickname << " - " << name 
+                  << ", 武器：" << weapon 
+                  << ", 武力：" << ability << std::endl;
     }
     
-    void 技能 () const override {
-        std::cout << "  → 施展武艺：" << 武器 << "攻击!" << std::endl;
+    void skill() const override {
+        std::cout << "  → 施展武艺：" << weapon << "攻击!" << std::endl;
     }
 };
 
 // 派生类：军师
-class 军师 : public 梁山人物 {
+class Strategist : public LiangshanPerson {
 private:
-    std::string 计谋;
+    std::string strategy;
 
 public:
-    军师 (const std::string& n, int v, const std::string& j)
-        : 梁山人物 (n, v), 计谋 (j) {}
+    Strategist(const std::string& n, int v, const std::string& j)
+        : LiangshanPerson(n, v), strategy(j) {}
     
-    void 介绍 () const override {
-        std::cout << "【军师】" << 姓名 
-                  << ", 擅长：" << 计谋 
-                  << ", 智力：" << 能力值 << std::endl;
+    void introduce() const override {
+        std::cout << "【军师】" << name 
+                  << ", 擅长：" << strategy 
+                  << ", 智力：" << ability << std::endl;
     }
     
-    void 技能 () const override {
-        std::cout << "  → 献计：" << 计谋 << "!" << std::endl;
+    void skill() const override {
+        std::cout << "  → 献计：" << strategy << "!" << std::endl;
     }
 };
 
 // 派生类：医师
-class 医师 : public 梁山人物 {
+class Doctor : public LiangshanPerson {
 private:
-    std::string 医术;
+    std::string medicalSkill;
 
 public:
-    医师 (const std::string& n, int v, const std::string& y)
-        : 梁山人物 (n, v), 医术 (y) {}
+    Doctor(const std::string& n, int v, const std::string& y)
+        : LiangshanPerson(n, v), medicalSkill(y) {}
     
-    void 介绍 () const override {
-        std::cout << "【医师】" << 姓名 
-                  << ", 擅长：" << 医术 
-                  << ", 医术：" << 能力值 << std::endl;
+    void introduce() const override {
+        std::cout << "【医师】" << name 
+                  << ", 擅长：" << medicalSkill 
+                  << ", 医术：" << ability << std::endl;
     }
     
-    void 技能 () const override {
-        std::cout << "  → 施治：" << 医术 << "治疗!" << std::endl;
+    void skill() const override {
+        std::cout << "  → 施治：" << medicalSkill << "治疗!" << std::endl;
     }
 };
 
@@ -98,17 +98,17 @@ int main() {
     std::cout << "===============================" << std::endl;
     
     // 多态容器
-    std::vector<std::unique_ptr<梁山人物>> 聚义寨;
+    std::vector<std::unique_ptr<LiangshanPerson>> juyiZhai;
     
-    聚义寨.push_back(std::make_unique<好汉>("林冲", "豹子头", 95, "长枪"));
-    聚义寨.push_back(std::make_unique<好汉>("鲁智深", "花和尚", 90, "禅杖"));
-    聚义寨.push_back(std::make_unique<军师>("吴用", 98, "连环计"));
-    聚义寨.push_back(std::make_unique<医师>("安道全", 92, "针灸"));
+    juyiZhai.push_back(std::make_unique<Hero>("林冲", "豹子头", 95, "长枪"));
+    juyiZhai.push_back(std::make_unique<Hero>("鲁智深", "花和尚", 90, "禅杖"));
+    juyiZhai.push_back(std::make_unique<Strategist>("吴用", 98, "连环计"));
+    juyiZhai.push_back(std::make_unique<Doctor>("安道全", 92, "针灸"));
     
     // 多态调用
-    for (const auto& 人物 : 聚义寨) {
-        人物->介绍 ();
-        人物->技能 ();
+    for (const auto& person : juyiZhai) {
+        person->introduce ();
+        person->skill ();
         std::cout << std::endl;
     }
     

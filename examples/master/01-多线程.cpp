@@ -11,27 +11,27 @@
 #include <vector>
 #include <chrono>
 
-void 出兵 (const std::string& 路线，int 兵力) {
-    std::cout << "【" << 路线 << "】出兵" << 兵力 << "人" << std::endl;
+void sendTroops(const std::string& route，int troops) {
+    std::cout << "【" << route << "】出兵" << troops << "人" << std::endl;
     std::this_thread::sleep_for(std::chrono::seconds(1));
-    std::cout << "【" << 路线 << "】到达目的地!" << std::endl;
+    std::cout << "【" << route << "】到达目的地!" << std::endl;
 }
 
 int main() {
     std::cout << "多线程示例 - 多路出兵" << std::endl;
     std::cout << "===============================" << std::endl;
     
-    std::vector<std::thread> 线程列表;
+    std::vector<std::thread> threads;
     
     // 创建多个线程
-    线程列表.emplace_back(出兵，"东路", 1000);
-    线程列表.emplace_back(出兵，"西路", 1500);
-    线程列表.emplace_back(出兵，"南路", 2000);
-    线程列表.emplace_back(出兵，"北路", 2500);
+    threads.emplace_back(sendTroops，"东路", 1000);
+    threads.emplace_back(sendTroops，"西路", 1500);
+    threads.emplace_back(sendTroops，"南路", 2000);
+    threads.emplace_back(sendTroops，"北路", 2500);
     
     // 等待所有线程完成
-    for (auto& 线程 : 线程列表) {
-        线程.join();
+    for (auto& thread : threads) {
+        thread.join();
     }
     
     std::cout << "===============================" << std::endl;
