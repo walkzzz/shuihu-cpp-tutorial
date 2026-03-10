@@ -19,30 +19,30 @@ private:
 
 public:
     // 构造函数
-    Leader (const std::string& n, const std::string& c, int b, const std::string& w)
-        : name (n), nickname (c), troops (b), weapon (w) {}
+    Leader(const std::string& n, const std::string& c, int b, const std::string& w)
+        : name(n), nickname(c), troops(b), weapon(w) {}
     
     // const 成员函数
-    void assignTroops () const {
+    void assignTroops() const {
         std::cout << nickname << " - " << name 
                   << " 持" << weapon 
                   << " 带" << troops << "兵马听令!" << std::endl;
     }
     
     // 链式调用
-    Leader& reinforce (int increment) {
+    Leader& reinforce(int increment) {
         troops += increment;
         return *this;
     }
     
-    Leader& changeWeapon (const std::string& newWeapon) {
+    Leader& changeWeapon(const std::string& newWeapon) {
         weapon = newWeapon;
         return *this;
     }
     
     // Getter
-    int getTroops () const { return troops; }
-    std::string getName () const { return name; }
+    int getTroops() const { return troops; }
+    std::string getName() const { return name; }
 };
 
 // 头领管理类
@@ -51,20 +51,20 @@ private:
     std::vector<Leader> leaders;
 
 public:
-    void addLeader (const Leader& leader) {
+    void addLeader(const Leader& leader) {
         leaders.push_back(leader);
     }
     
-    void assignTroops () const {
+    void assignTroops() const {
         for (const auto& leader : leaders) {
-            leader.assignTroops ();
+            leader.assignTroops();
         }
     }
     
-    int getTotalTroops () const {
+    int getTotalTroops() const {
         int total = 0;
         for (const auto& leader : leaders) {
-            total += leader.getTroops ();
+            total += leader.getTroops();
         }
         return total;
     }
@@ -78,15 +78,15 @@ int main() {
     LeaderManager juyiZhai;
     
     // 添加头领
-    juyiZhai.addLeader (Leader ("林冲", "豹子头", 5000, "长枪"));
-    juyiZhai.addLeader (Leader ("鲁智深", "花和尚", 3000, "禅杖"));
-    juyiZhai.addLeader (Leader ("武松", "行者", 2000, "双刀"));
+    juyiZhai.addLeader(Leader("林冲", "豹子头", 5000, "长枪"));
+    juyiZhai.addLeader(Leader("鲁智深", "花和尚", 3000, "禅杖"));
+    juyiZhai.addLeader(Leader("武松", "行者", 2000, "双刀"));
     
     // 点将
-    juyiZhai.assignTroops ();
+    juyiZhai.assignTroops();
     
     std::cout << "===============================" << std::endl;
-    std::cout << "总兵力：" << juyiZhai.getTotalTroops () << "人" << std::endl;
+    std::cout << "总兵力：" << juyiZhai.getTotalTroops() << "人" << std::endl;
     
     std::cout << "===============================" << std::endl;
     

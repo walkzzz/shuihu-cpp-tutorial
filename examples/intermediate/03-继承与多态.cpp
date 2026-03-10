@@ -107,8 +107,8 @@ int main() {
     
     // 多态调用
     for (const auto& person : juyiZhai) {
-        person->introduce ();
-        person->skill ();
+        person->introduce();
+        person->skill();
         std::cout << std::endl;
     }
     

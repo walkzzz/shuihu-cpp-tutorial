@@ -18,23 +18,23 @@ struct Leader {
 };
 
 // 值传递 - 复制一份
-void assignLeader (Leader leader) {
+void assignLeader(Leader leader) {
     std::cout << leader.name << " 带" << leader.troops << "兵马听令!" << std::endl;
 }
 
 // 引用传递 - 不复制，直接访问
-void checkTroops (const Leader& leader) {
+void checkTroops(const Leader& leader) {
     std::cout << leader.name << " 兵力：" << leader.troops << std::endl;
 }
 
 // 引用传递 - 可以修改
-void reinforceTroops (Leader& leader, int increment) {
+void reinforceTroops(Leader& leader, int increment) {
     leader.troops += increment;
     std::cout << leader.name << " 增兵" << increment << "，现有" << leader.troops << std::endl;
 }
 
 // 智能指针示例
-void smartPointerExample () {
+void smartPointerExample() {
     std::cout << "\n智能指针示例:" << std::endl;
     
     // unique_ptr - 独占所有权
@@ -55,19 +55,19 @@ int main() {
     Leader linChong {"林冲", 5000};
     
     // 引用传递 - 不复制
-    checkTroops (linChong);
+    checkTroops(linChong);
     
     // 引用传递 - 修改原值
-    reinforceTroops (linChong, 1000);
-    checkTroops (linChong);
+    reinforceTroops(linChong, 1000);
+    checkTroops(linChong);
     
     // 值传递 - 复制
-    assignLeader (linChong);
+    assignLeader(linChong);
     
     std::cout << "===============================" << std::endl;
     
     // 智能指针示例
-    smartPointerExample ();
+    smartPointerExample();
     
     std::cout << "===============================" << std::endl;
     std::cout << "调配完毕!" << std::endl;

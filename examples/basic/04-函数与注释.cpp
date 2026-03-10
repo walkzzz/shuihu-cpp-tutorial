@@ -20,7 +20,7 @@
  * - 每斩一将：10 分
  * - 每俘一人：5 分
  */
-int calculateMerit (int enemyGenerals, int prisoners) {
+int calculateMerit(int enemyGenerals, int prisoners) {
     return enemyGenerals * 10 + prisoners * 5;
 }
 
@@ -29,7 +29,7 @@ int calculateMerit (int enemyGenerals, int prisoners) {
  * @param merit 军功总分
  * @return 等级字符串
  */
-std::string evaluateRank (int merit) {
+std::string evaluateRank(int merit) {
     if (merit >= 100) {
         return "特等功";
     } else if (merit >= 50) {
@@ -46,14 +46,14 @@ int main() {
     std::cout << "===============================" << std::endl;
     
     // 计算各位头领的军功
-    int linChongMerit = calculateMerit (5, 10);
-    int luZhishenMerit = calculateMerit (3, 15);
-    int wuSongMerit = calculateMerit (10, 5);
+    int linChongMerit = calculateMerit(5, 10);
+    int luZhishenMerit = calculateMerit(3, 15);
+    int wuSongMerit = calculateMerit(10, 5);
     
     // 输出评定结果
-    std::cout << "林冲：" << linChongMerit << "分 - " << evaluateRank (linChongMerit) << std::endl;
-    std::cout << "鲁智深：" << luZhishenMerit << "分 - " << evaluateRank (luZhishenMerit) << std::endl;
-    std::cout << "武松：" << wuSongMerit << "分 - " << evaluateRank (wuSongMerit) << std::endl;
+    std::cout << "林冲：" << linChongMerit << "分 - " << evaluateRank(linChongMerit) << std::endl;
+    std::cout << "鲁智深：" << luZhishenMerit << "分 - " << evaluateRank(luZhishenMerit) << std::endl;
+    std::cout << "武松：" << wuSongMerit << "分 - " << evaluateRank(wuSongMerit) << std::endl;
     
     std::cout << "===============================" << std::endl;
     std::cout << "评定完毕!" << std::endl;

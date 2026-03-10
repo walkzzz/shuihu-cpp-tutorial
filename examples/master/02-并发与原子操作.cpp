@@ -27,7 +27,7 @@ int main() {
     
     // 创建 10 个线程，每个线程增兵 1000 次
     for (int i = 0; i < 10; ++i) {
-        threads.emplace_back(reinforceTroops，1000);
+        threads.emplace_back(reinforceTroops, 1000);
     }
     
     // 等待所有线程完成

@@ -55,12 +55,12 @@ int main() {
     Strategist wuYong;
     
     // 使用声东击西
-    wuYong.setStrategy (std::make_unique<SoundEastAttackWest>());
-    wuYong.offerStrategy ();
+    wuYong.setStrategy(std::make_unique<SoundEastAttackWest>());
+    wuYong.offerStrategy();
     
     // 切换为围魏救赵
-    wuYong.setStrategy (std::make_unique<SurroundWeiSaveZhao>());
-    wuYong.offerStrategy ();
+    wuYong.setStrategy(std::make_unique<SurroundWeiSaveZhao>());
+    wuYong.offerStrategy();
     
     std::cout << "===============================" << std::endl;
     std::cout << "示例完成!" << std::endl;

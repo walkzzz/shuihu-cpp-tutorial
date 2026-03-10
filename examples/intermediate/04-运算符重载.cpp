@@ -16,8 +16,8 @@ private:
     int power;
 
 public:
-    Hero (const std::string& n, const std::string& c, int v)
-        : name (n), nickname (c), power (v) {}
+    Hero(const std::string& n, const std::string& c, int v)
+        : name(n), nickname(c), power(v) {}
     
     // 输出运算符重载
     friend std::ostream& operator<<(std::ostream& os, const Hero& h) {
@@ -47,7 +47,7 @@ public:
     
     // 加法运算符重载 - 合力
     Hero operator+(const Hero& other) const {
-        return Hero (name + "+" + other.name, "双雄", power + other.power);
+        return Hero(name + "+" + other.name, "双雄", power + other.power);
     }
     
     // 前置递增
@@ -63,16 +63,16 @@ public:
         return temp;
     }
     
-    int getPower () const { return power; }
+    int getPower() const { return power; }
 };
 
 int main() {
     std::cout << "运算符重载示例" << std::endl;
     std::cout << "===============================" << std::endl;
     
-    Hero linChong ("林冲", "豹子头", 95);
-    Hero luZhishen ("鲁智深", "花和尚", 90);
-    Hero wuSong ("武松", "行者", 92);
+    Hero linChong("林冲", "豹子头", 95);
+    Hero luZhishen("鲁智深", "花和尚", 90);
+    Hero wuSong("武松", "行者", 92);
     
     // 输出运算符
     std::cout << "好汉 1: " << linChong << std::endl;
@@ -92,9 +92,9 @@ int main() {
     std::cout << std::endl;
     
     // 递增运算符
-    std::cout << "鲁智深原武力：" << luZhishen.getPower () << std::endl;
+    std::cout << "鲁智深原武力：" << luZhishen.getPower() << std::endl;
     ++luZhishen;
-    std::cout << "修炼后武力：" << luZhishen.getPower () << std::endl;
+    std::cout << "修炼后武力：" << luZhishen.getPower() << std::endl;
     
     std::cout << "===============================" << std::endl;
     std::cout << "示例完成!" << std::endl;

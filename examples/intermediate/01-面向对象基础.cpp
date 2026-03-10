@@ -19,19 +19,19 @@ private:
 
 public:
     // 构造函数
-    Leader (const std::string& n, const std::string& c, int b)
-        : name (n), nickname (c), troops (b) {}
+    Leader(const std::string& n, const std::string& c, int b)
+        : name(n), nickname(c), troops(b) {}
     
     // Getter 方法
-    std::string getName () const { return name; }
-    std::string getNickname () const { return nickname; }
-    int getTroops () const { return troops; }
+    std::string getName() const { return name; }
+    std::string getNickname() const { return nickname; }
+    int getTroops() const { return troops; }
     
     // Setter 方法
-    void setTroops (int b) { troops = b; }
+    void setTroops(int b) { troops = b; }
     
     // 成员方法
-    void assignTroops () const {
+    void assignTroops() const {
         std::cout << nickname << " - " << name << " 带" << troops << "兵马听令!" << std::endl;
     }
 };
@@ -41,24 +41,24 @@ int main() {
     std::cout << "===============================" << std::endl;
     
     // 创建对象
-    Leader linChong ("林冲", "豹子头", 5000);
-    Leader luZhishen ("鲁智深", "花和尚", 3000);
-    Leader wuSong ("武松", "行者", 2000);
+    Leader linChong("林冲", "豹子头", 5000);
+    Leader luZhishen("鲁智深", "花和尚", 3000);
+    Leader wuSong("武松", "行者", 2000);
     
     // 调用方法
-    linChong.assignTroops ();
-    luZhishen.assignTroops ();
-    wuSong.assignTroops ();
+    linChong.assignTroops();
+    luZhishen.assignTroops();
+    wuSong.assignTroops();
     
     std::cout << "===============================" << std::endl;
     
     // 使用 Getter
-    std::cout << linChong.getName () << " 的绰号是：" << linChong.getNickname () << std::endl;
-    std::cout << "初始兵力：" << linChong.getTroops () << std::endl;
+    std::cout << linChong.getName() << " 的绰号是：" << linChong.getNickname() << std::endl;
+    std::cout << "初始兵力：" << linChong.getTroops() << std::endl;
     
     // 使用 Setter
-    linChong.setTroops (6000);
-    std::cout << "增兵后：" << linChong.getTroops () << std::endl;
+    linChong.setTroops(6000);
+    std::cout << "增兵后：" << linChong.getTroops() << std::endl;
     
     std::cout << "===============================" << std::endl;
     std::cout << "示例完成!" << std::endl;
