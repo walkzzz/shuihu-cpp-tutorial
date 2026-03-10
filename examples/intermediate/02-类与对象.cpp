@@ -10,63 +10,63 @@
 #include <string>
 #include <vector>
 
-class 头领 {
+class Leader {
 private:
-    std::string 姓名;
-    std::string 绰号;
-    int 兵力;
-    std::string 武器;
+    std::string name;
+    std::string nickname;
+    int troops;
+    std::string weapon;
 
 public:
     // 构造函数
-    头领 (const std::string& n, const std::string& c, int b, const std::string& w)
-        : 姓名 (n), 绰号 (c), 兵力 (b), 武器 (w) {}
+    Leader (const std::string& n, const std::string& c, int b, const std::string& w)
+        : name (n), nickname (c), troops (b), weapon (w) {}
     
     // const 成员函数
-    void 点将 () const {
-        std::cout << 绰号 << " - " << 姓名 
-                  << " 持" << 武器 
-                  << " 带" << 兵力 << "兵马听令!" << std::endl;
+    void assignTroops () const {
+        std::cout << nickname << " - " << name 
+                  << " 持" << weapon 
+                  << " 带" << troops << "兵马听令!" << std::endl;
     }
     
     // 链式调用
-    头领& 增兵 (int 增量) {
-        兵力 += 增量;
+    Leader& reinforce (int increment) {
+        troops += increment;
         return *this;
     }
     
-    头领& 换武器 (const std::string& 新武器) {
-        武器 = 新武器;
+    Leader& changeWeapon (const std::string& newWeapon) {
+        weapon = newWeapon;
         return *this;
     }
     
     // Getter
-    int 获取兵力 () const { return 兵力; }
-    std::string 获取姓名 () const { return 姓名; }
+    int getTroops () const { return troops; }
+    std::string getName () const { return name; }
 };
 
 // 头领管理类
-class 头领管理 {
+class LeaderManager {
 private:
-    std::vector<头领> 头领列表;
+    std::vector<Leader> leaders;
 
 public:
-    void 添加头领 (const 头领& 头领) {
-        头领列表.push_back(头领);
+    void addLeader (const Leader& leader) {
+        leaders.push_back(leader);
     }
     
-    void 点将 () const {
-        for (const auto& 头领 : 头领列表) {
-            头领。点将 ();
+    void assignTroops () const {
+        for (const auto& leader : leaders) {
+            leader.assignTroops ();
         }
     }
     
-    int 总兵力 () const {
-        int 总 = 0;
-        for (const auto& 头领 : 头领列表) {
-            总 += 头领。获取兵力 ();
+    int getTotalTroops () const {
+        int total = 0;
+        for (const auto& leader : leaders) {
+            total += leader.getTroops ();
         }
-        return 总;
+        return total;
     }
 };
 
@@ -75,25 +75,25 @@ int main() {
     std::cout << "===============================" << std::endl;
     
     // 创建头领管理
-    头领管理 聚义寨;
+    LeaderManager juyiZhai;
     
     // 添加头领
-    聚义寨。添加头领 (头领 ("林冲", "豹子头", 5000, "长枪"));
-    聚义寨。添加头领 (头领 ("鲁智深", "花和尚", 3000, "禅杖"));
-    聚义寨。添加头领 (头领 ("武松", "行者", 2000, "双刀"));
+    juyiZhai.addLeader (Leader ("林冲", "豹子头", 5000, "长枪"));
+    juyiZhai.addLeader (Leader ("鲁智深", "花和尚", 3000, "禅杖"));
+    juyiZhai.addLeader (Leader ("武松", "行者", 2000, "双刀"));
     
     // 点将
-    聚义寨。点将 ();
+    juyiZhai.assignTroops ();
     
     std::cout << "===============================" << std::endl;
-    std::cout << "总兵力：" << 聚义寨。总兵力 () << "人" << std::endl;
+    std::cout << "总兵力：" << juyiZhai.getTotalTroops () << "人" << std::endl;
     
     std::cout << "===============================" << std::endl;
     
     // 链式调用示例
-    头领 宋江 ("宋江", "及时雨", 1000, "宝剑");
-    宋江。增兵 (500).换武器 ("长枪");
-    宋江。点将 ();
+    Leader songJiang ("宋江", "及时雨", 1000, "宝剑");
+    songJiang.reinforce (500).changeWeapon ("长枪");
+    songJiang.assignTroops ();
     
     std::cout << "===============================" << std::endl;
     std::cout << "示例完成!" << std::endl;

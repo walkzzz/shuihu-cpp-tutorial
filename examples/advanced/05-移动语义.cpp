@@ -11,59 +11,59 @@
 #include <string>
 #include <utility>
 
-class 粮草库 {
+class Granary {
 private:
-    std::vector<int> 粮草;
-    std::string 名称;
+    std::vector<int> grains;
+    std::string name;
 
 public:
-    粮草库 (const std::string& n, int 初始量)
-        : 名称 (n) {
-        粮草.resize(初始量);
-        std::cout << "【构造】" << 名称 << " 创建 (" << 初始量 << "石)" << std::endl;
+    Granary (const std::string& n, int initialAmount)
+        : name (n) {
+        grains.resize(initialAmount);
+        std::cout << "【构造】" << name << " 创建 (" << initialAmount << "石)" << std::endl;
     }
     
     // 拷贝构造函数
-    粮草库 (const 粮草库& other)
-        : 名称 (other.名称 + "_copy") {
-        粮草 = other.粮草;
-        std::cout << "【拷贝】" << 名称 << " 被复制" << std::endl;
+    Granary (const Granary& other)
+        : name (other.name + "_copy") {
+        grains = other.grains;
+        std::cout << "【拷贝】" << name << " 被复制" << std::endl;
     }
     
     // 移动构造函数
-    粮草库 (粮草库&& other) noexcept
-        : 名称 (std::move(other.名称)) {
-        粮草 = std::move(other.粮草);
-        std::cout << "【移动】" << 名称 << " 被移动 (高效!)" << std::endl;
+    Granary (Granary&& other) noexcept
+        : name (std::move(other.name)) {
+        grains = std::move(other.grains);
+        std::cout << "【移动】" << name << " 被移动 (高效!)" << std::endl;
     }
     
     // 拷贝赋值
-    粮草库& operator=(const 粮草库& other) {
+    Granary& operator=(const Granary& other) {
         if (this != &other) {
-            名称 = other.名称 + "_copy";
-            粮草 = other.粮草;
-            std::cout << "【拷贝赋值】" << 名称 << std::endl;
+            name = other.name + "_copy";
+            grains = other.grains;
+            std::cout << "【拷贝赋值】" << name << std::endl;
         }
         return *this;
     }
     
     // 移动赋值
-    粮草库& operator=(粮草库&& other) noexcept {
+    Granary& operator=(Granary&& other) noexcept {
         if (this != &other) {
-            名称 = std::move(other.名称);
-            粮草 = std::move(other.粮草);
-            std::cout << "【移动赋值】" << 名称 << " (高效!)" << std::endl;
+            name = std::move(other.name);
+            grains = std::move(other.grains);
+            std::cout << "【移动赋值】" << name << " (高效!)" << std::endl;
         }
         return *this;
     }
     
-    ~粮草库 () {
-        std::cout << "【析构】" << 名称 << std::endl;
+    ~Granary () {
+        std::cout << "【析构】" << name << std::endl;
     }
 };
 
-粮草库 创建粮草库 (const std::string& 名称，int 量) {
-    return 粮草库 (名称，量);
+Granary createGranary (const std::string& name, int amount) {
+    return Granary (name, amount);
 }
 
 int main() {
@@ -71,14 +71,14 @@ int main() {
     std::cout << "===============================" << std::endl;
     
     std::cout << "\n=== 返回值优化 (RVO) ===" << std::endl;
-    auto 库 1 = 创建粮草库 ("前线粮草库", 10000);
+    auto granary1 = createGranary ("前线粮草库", 10000);
     
     std::cout << "\n=== 移动语义 ===" << std::endl;
-    auto 库 2 = std::move(库 1);
+    auto granary2 = std::move(granary1);
     
     std::cout << "\n=== vector 自动使用移动语义 ===" << std::endl;
-    std::vector<粮草库> 总粮草库;
-    总粮草库.push_back(创建粮草库 ("后方粮草库", 20000));
+    std::vector<Granary> allGranaries;
+    allGranaries.push_back(createGranary ("后方粮草库", 20000));
     
     std::cout << "\n===============================" << std::endl;
     std::cout << "示例完成!" << std::endl;

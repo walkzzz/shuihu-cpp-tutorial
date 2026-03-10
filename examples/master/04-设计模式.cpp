@@ -12,38 +12,38 @@
 #include <string>
 
 // 策略模式
-class 计谋 {
+class Strategy {
 public:
-    virtual ~计谋 () = default;
-    virtual void 施展 () const = 0;
+    virtual ~Strategy () = default;
+    virtual void execute () const = 0;
 };
 
-class 声东击西 : public 计谋 {
+class SoundEastAttackWest : public Strategy {
 public:
-    void 施展 () const override {
+    void execute () const override {
         std::cout << "【声东击西】佯攻东面，实取西面!" << std::endl;
     }
 };
 
-class 围魏救赵 : public 计谋 {
+class SurroundWeiSaveZhao : public Strategy {
 public:
-    void 施展 () const override {
+    void execute () const override {
         std::cout << "【围魏救赵】攻其必救，解围之道!" << std::endl;
     }
 };
 
-class 军师 {
+class Strategist {
 private:
-    std::unique_ptr<计谋> 当前计谋;
+    std::unique_ptr<Strategy> currentStrategy;
 
 public:
-    void 设置计谋 (std::unique_ptr<计谋> 计谋) {
-        当前计谋 = std::move(计谋);
+    void setStrategy (std::unique_ptr<Strategy> strategy) {
+        currentStrategy = std::move(strategy);
     }
     
-    void 献计 () const {
-        if (当前计谋) {
-            当前计谋->施展 ();
+    void offerStrategy () const {
+        if (currentStrategy) {
+            currentStrategy->execute ();
         }
     }
 };
@@ -52,15 +52,15 @@ int main() {
     std::cout << "设计模式示例 - 策略模式" << std::endl;
     std::cout << "===============================" << std::endl;
     
-    军师 吴用;
+    Strategist wuYong;
     
     // 使用声东击西
-    吴用。设置计谋 (std::make_unique<声东击西>());
-    吴用。献计 ();
+    wuYong.setStrategy (std::make_unique<SoundEastAttackWest>());
+    wuYong.offerStrategy ();
     
     // 切换为围魏救赵
-    吴用。设置计谋 (std::make_unique<围魏救赵>());
-    吴用。献计 ();
+    wuYong.setStrategy (std::make_unique<SurroundWeiSaveZhao>());
+    wuYong.offerStrategy ();
     
     std::cout << "===============================" << std::endl;
     std::cout << "示例完成!" << std::endl;

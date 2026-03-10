@@ -15,36 +15,36 @@ int main() {
     std::cout << "===============================" << std::endl;
     
     // 字符串类型 - 寨主姓名
-    const std::string 寨主 = "宋江";
-    std::cout << "寨主：" << 寨主 << std::endl;
+    const std::string leader = "宋江";
+    std::cout << "寨主：" << leader << std::endl;
     
     // 整型 - 各军兵力
-    int 总兵力 = 0;
-    const int 马军 = 5000;
-    const int 步军 = 3000;
-    const int 水军 = 2000;
+    int totalTroops = 0;
+    const int cavalry = 5000;
+    const int infantry = 3000;
+    const int navy = 2000;
     
     // 浮点型 - 粮草比例
-    const double 粮草比例 = 0.75;
+    const double foodRatio = 0.75;
     
     // 字符串 - 口号
-    const std::string 口号 = "替天行道";
+    const std::string slogan = "替天行道";
     
     // 布尔型 - 战备状态
-    const bool 战备状态 = true;
+    const bool warReady = true;
     
     // 计算总兵力
-    总兵力 = 马军 + 步军 + 水军;
+    totalTroops = cavalry + infantry + navy;
     
     // 输出统计
-    std::cout << "马军：" << 马军 << "人" << std::endl;
-    std::cout << "步军：" << 步军 << "人" << std::endl;
-    std::cout << "水军：" << 水军 << "人" << std::endl;
-    std::cout << "粮草比例：" << 粮草比例 << std::endl;
-    std::cout << "口号：" << 口号 << std::endl;
-    std::cout << "战备状态：" << (战备状态 ? "是" : "否") << std::endl;
+    std::cout << "马军：" << cavalry << "人" << std::endl;
+    std::cout << "步军：" << infantry << "人" << std::endl;
+    std::cout << "水军：" << navy << "人" << std::endl;
+    std::cout << "粮草比例：" << foodRatio << std::endl;
+    std::cout << "口号：" << slogan << std::endl;
+    std::cout << "战备状态：" << (warReady ? "是" : "否") << std::endl;
     std::cout << "===============================" << std::endl;
-    std::cout << "总兵力：" << 总兵力 << "人" << std::endl;
+    std::cout << "总兵力：" << totalTroops << "人" << std::endl;
     
     return 0;
 }

@@ -9,92 +9,92 @@
 #include <iostream>
 #include <string>
 
-class 好汉 {
+class Hero {
 private:
-    std::string 姓名;
-    std::string 绰号;
-    int 武力值;
+    std::string name;
+    std::string nickname;
+    int power;
 
 public:
-    好汉 (const std::string& n, const std::string& c, int v)
-        : 姓名 (n), 绰号 (c), 武力值 (v) {}
+    Hero (const std::string& n, const std::string& c, int v)
+        : name (n), nickname (c), power (v) {}
     
     // 输出运算符重载
-    friend std::ostream& operator<<(std::ostream& os, const 好汉& h) {
-        os << h.绰号 << " - " << h.姓名 << " (武力:" << h.武力值 << ")";
+    friend std::ostream& operator<<(std::ostream& os, const Hero& h) {
+        os << h.nickname << " - " << h.name << " (武力:" << h.power << ")";
         return os;
     }
     
     // 相等运算符重载
-    bool operator==(const 好汉& other) const {
-        return 武力值 == other.武力值;
+    bool operator==(const Hero& other) const {
+        return power == other.power;
     }
     
     // 不相等运算符重载
-    bool operator!=(const 好汉& other) const {
-        return 武力值 != other.武力值;
+    bool operator!=(const Hero& other) const {
+        return power != other.power;
     }
     
     // 大于运算符重载
-    bool operator>(const 好汉& other) const {
-        return 武力值 > other.武力值;
+    bool operator>(const Hero& other) const {
+        return power > other.power;
     }
     
     // 小于运算符重载
-    bool operator<(const 好汉& other) const {
-        return 武力值 < other.武力值;
+    bool operator<(const Hero& other) const {
+        return power < other.power;
     }
     
     // 加法运算符重载 - 合力
-    好汉 operator+(const 好汉& other) const {
-        return 好汉 (姓名 + "+" + other.姓名，"双雄", 武力值 + other.武力值);
+    Hero operator+(const Hero& other) const {
+        return Hero (name + "+" + other.name, "双雄", power + other.power);
     }
     
     // 前置递增
-    好汉& operator++() {
-        ++武力值;
+    Hero& operator++() {
+        ++power;
         return *this;
     }
     
     // 后置递增
-    好汉 operator++(int) {
-        好汉 temp = *this;
+    Hero operator++(int) {
+        Hero temp = *this;
         ++(*this);
         return temp;
     }
     
-    int 获取武力值 () const { return 武力值; }
+    int getPower () const { return power; }
 };
 
 int main() {
     std::cout << "运算符重载示例" << std::endl;
     std::cout << "===============================" << std::endl;
     
-    好汉 林冲 ("林冲", "豹子头", 95);
-    好汉 鲁智深 ("鲁智深", "花和尚", 90);
-    好汉 武松 ("武松", "行者", 92);
+    Hero linChong ("林冲", "豹子头", 95);
+    Hero luZhishen ("鲁智深", "花和尚", 90);
+    Hero wuSong ("武松", "行者", 92);
     
     // 输出运算符
-    std::cout << "好汉 1: " << 林冲 << std::endl;
-    std::cout << "好汉 2: " << 鲁智深 << std::endl;
-    std::cout << "好汉 3: " << 武松 << std::endl;
+    std::cout << "好汉 1: " << linChong << std::endl;
+    std::cout << "好汉 2: " << luZhishen << std::endl;
+    std::cout << "好汉 3: " << wuSong << std::endl;
     std::cout << std::endl;
     
     // 比较运算符
-    std::cout << "林冲 > 鲁智深？" << (林冲 > 鲁智深 ? "是" : "否") << std::endl;
-    std::cout << "林冲 < 武松？" << (林冲 < 武松 ? "是" : "否") << std::endl;
-    std::cout << "鲁智深 == 武松？" << (鲁智深 == 武松 ? "是" : "否") << std::endl;
+    std::cout << "林冲 > 鲁智深？" << (linChong > luZhishen ? "是" : "否") << std::endl;
+    std::cout << "林冲 < 武松？" << (linChong < wuSong ? "是" : "否") << std::endl;
+    std::cout << "鲁智深 == 武松？" << (luZhishen == wuSong ? "是" : "否") << std::endl;
     std::cout << std::endl;
     
     // 加法运算符 - 合力
-    好汉 合力 = 林冲 + 鲁智深;
-    std::cout << "合力：" << 合力 << std::endl;
+    Hero combinedForce = linChong + luZhishen;
+    std::cout << "合力：" << combinedForce << std::endl;
     std::cout << std::endl;
     
     // 递增运算符
-    std::cout << "鲁智深原武力：" << 鲁智深。获取武力值 () << std::endl;
-    ++鲁智深;
-    std::cout << "修炼后武力：" << 鲁智深。获取武力值 () << std::endl;
+    std::cout << "鲁智深原武力：" << luZhishen.getPower () << std::endl;
+    ++luZhishen;
+    std::cout << "修炼后武力：" << luZhishen.getPower () << std::endl;
     
     std::cout << "===============================" << std::endl;
     std::cout << "示例完成!" << std::endl;
