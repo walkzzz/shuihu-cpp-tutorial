@@ -25,15 +25,23 @@
 
 ```
 shuihu-cpp-tutorial/
-├── CMakeLists.txt          # 构建配置
+├── CMakeLists.txt          # CMake 构建配置
 ├── src/
 │   └── main.cpp            # 主程序入口
-├── examples/               # 示例代码
+├── examples/               # 19 个示例代码
 │   ├── basic/              # 入门阶段 (5 个)
 │   ├── intermediate/       # 进阶阶段 (5 个)
-│   ├── advanced/           # 高级阶段 (4 个)
+│   ├── advanced/           # 高级阶段 (5 个)
 │   └── master/             # 骨灰阶段 (4 个)
-└── docs/                   # 详细文档
+├── docs/                   # 详细文档
+│   ├── README.md           # 文档说明
+│   ├── 编译指南.md         # 编译配置
+│   ├── 知识索引.md         # 知识点查找
+│   ├── 项目总结.md         # 项目总结
+│   └── exercises/          # 练习题
+├── QuickStart.md           # 快速开始指南
+├── LICENSE                 # MIT 许可证
+└── README.md               # 本文件
 ```
 
 ## 🚀 快速开始
@@ -133,6 +141,7 @@ cmake --build . --target advanced-01 && ./advanced-01
 
 - **19 个** 可运行示例代码
 - **20 章** 完整教程内容
+- **完整文档体系** - 快速开始、编译指南、知识索引、项目总结、练习题
 - **标准 CMake 项目结构**
 - **MIT 许可证** - 完全开源免费
 - **持续更新中**
